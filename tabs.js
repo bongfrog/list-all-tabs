@@ -1079,6 +1079,7 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFilter();
     });
   }
+  focusFilter();
   updateTabsLists();
   renderSaved();
   renderRecentlyClosed();
@@ -1111,8 +1112,16 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Typing goes straight into the filter, replacing the previous query.
+function focusFilter() {
+  let filter = document.getElementById("filter");
+  filter.focus();
+  filter.select();
+}
+
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState == "visible") {
+    focusFilter();
     updateTabsLists();
     renderRecentlyClosed();
   }
